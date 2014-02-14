@@ -6,10 +6,16 @@ A Python library for querying the DuckDuckGo API.
 
 Copyright Michael Stephens <me@mikej.st>, released under a BSD-style license.
 
-Source: http://github.com/crazedpsyc/python-duckduckgo
+Robbie's Source: https://github.com/robbielynch/python-duckduckgo
+
+Forked Source: http://github.com/crazedpsyc/python-duckduckgo
+
 Original source: http://github.com/mikejs/python-duckduckgo (outdated)
 
-This version has been forked from the original to handle some new features of the API, and switch from XML to JSON.
+
+crazedpsyc's version has been forked from the original to handle some new features of the API, and switch from XML to JSON.
+
+robbielynch's version fixes urllib imports and references, along with json.loads() errors resulted in a solution where decoding to utf-8 was required.
 
 Installation
 ============
