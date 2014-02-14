@@ -1,9 +1,8 @@
-import urllib
-import urllib2
+import urllib.request, urllib.error, urllib.parse, urllib.response, urllib.robotparser
 import json as j
 import sys
 
-__version__ = 0.242
+__version__ = 0.3
 
 
 def query(query, useragent='python-duckduckgo '+str(__version__), safesearch=True, html=False, meanings=True, **kwargs):
@@ -12,12 +11,12 @@ def query(query, useragent='python-duckduckgo '+str(__version__), safesearch=Tru
 
     Here's a query that's unlikely to change:
 
-    >>> result = query('1 + 1')
-    >>> result.type
+    --- result = query('1 + 1')
+    --- result.type
     'nothing'
-    >>> result.answer.text
+    --- result.answer.text
     '1 + 1 = 2'
-    >>> result.answer.type
+    --- result.answer.type
     'calc'
 
     Keword arguments:
@@ -26,7 +25,7 @@ def query(query, useragent='python-duckduckgo '+str(__version__), safesearch=Tru
     html: True to allow HTML in output. Default: False (bool)
     meanings: True to include disambiguations in results (bool)
     Any other keyword arguments are passed directly to DuckDuckGo as URL params.
-    """ % __version__
+    """
 
     safesearch = '1' if safesearch else '-1'
     html = '0' if html else '1'
@@ -40,12 +39,12 @@ def query(query, useragent='python-duckduckgo '+str(__version__), safesearch=Tru
         'd': meanings,
         }
     params.update(kwargs)
-    encparams = urllib.urlencode(params)
+    encparams = urllib.parse.urlencode(params)
     url = 'http://api.duckduckgo.com/?' + encparams
 
-    request = urllib2.Request(url, headers={'User-Agent': useragent})
-    response = urllib2.urlopen(request)
-    json = j.loads(response.read())
+    request = urllib.request.Request(url, headers={'User-Agent': useragent})
+    response = urllib.request.urlopen(request)
+    json = j.loads(response.read().decode('utf-8'))
     response.close()
 
     return Results(json)
@@ -172,7 +171,7 @@ def main():
         for key in keys:
             sys.stdout.write(key)
             if type(q.json[key]) in [str,unicode]: print(':', q.json[key])
-            else: 
+            else:
                 sys.stdout.write('\n')
                 for i in q.json[key]: print('\t',i)
     else:
