@@ -15,7 +15,7 @@ Original source: http://github.com/mikejs/python-duckduckgo (outdated)
 
 crazedpsyc's version has been forked from the original to handle some new features of the API, and switch from XML to JSON.
 
-robbielynch's version fixes urllib imports and references, along with json.loads() errors resulted in a solution where decoding to utf-8 was required.
+robbielynch's version fixes urllib imports and references, along with json.loads() errors. Which resulted in a solution where decoding to utf-8 was required.
 
 Installation
 ============
